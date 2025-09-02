@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        form {
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            margin-top: 5px;
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        #resultado {
+            margin-top: 30px;
+            display: grid;
+            gap: 15px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .card h1 {
+            margin: 0;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!--C * L * A-->
+    <div>
+        <form id="calcForm">
+            <label for="cnumber">Comprimento:</label>
+            <input type="number" id="cnumber" name="cnumber" required>
+            
+            <label for="lnumber">Largura:</label>
+            <input type="number" id="lnumber" name="lnumber" required>
+            
+            <label for="anumber">Altura:</label>
+            <input type="number" id="anumber" name="anumber" required>
+            <br>
+            <button type="submit">Calcular</button>
+        </form>
+    </div>
+
+    <div id="resultado"></div>
+
+    <script>
+        document.getElementById("calcForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const c = parseFloat(document.getElementById("cnumber").value);
+            const l = parseFloat(document.getElementById("lnumber").value);
+            const a = parseFloat(document.getElementById("anumber").value);
+            const resultado = (c * l * a)/1000;
+
+            document.getElementById("resultado").innerHTML = `
+            <div class="card"><h1>Litragem: ${resultado} Litros</h1></div>
+            <div class="card"><h1>Termostato: ${resultado} Watts</h1></div>
+            <div class="card"><h1>Filtragem: ${resultado*5} L/h minimo</h1></div>
+            <div class="card"><h1>Quantidade de Subtrato: ${(c*l*4)+1200} kg minimo</h1></div>
+            <div class="card"><h1>Quantida de Sal para Marinho: ${((resultado*1000)/30)/1000} kg p/ 1024 ppm</h1></div>
+            `;
+        });
+    </script>
+</body>
+</html>
